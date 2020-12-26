@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int a[10], b[10];
+    int n, l;
+    cin >> n;
+    cin >> l;
+
+    int i;
+    for (i = 0; i < n; ++i) {
+        cin >> a[i];
+    }
+
+    int j = -1, y = 1, i1, x = n;
+
+    for (i = 1; i < n; ++i) {
+        if (a[i - 1] != a[i]) {
+            if (y > l) {
+                b[++j] = 0;
+                x -= y - 1;
+            }
+            else {
+                for (i1 = 0; i1 < y; ++i1)
+                    b[++j] = a[i - 1];
+            }           
+            y = 0;
+        }        
+        ++y;
+    }     
+    if (y > l) {
+        b[++j] = 0;
+        y -= y - 1;
+    }
+    else {
+        for (i1 = 0; i1 < y; ++i1)
+            b[++j] = a[i - 1];
+    }
+
+    for (i = 0; i < x; ++i) 
+        a[i] = b[i];
+
+    for (i = 0; i < x; ++i)
+        cout << a[i];
+
+    return 0;
+}
